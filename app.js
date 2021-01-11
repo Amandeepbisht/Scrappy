@@ -12,6 +12,7 @@ const mongoSanitize=require('express-mongo-sanitize')
 const xss=require('xss-clean'); 
 const path=require('path')
 
+// start express app
 const app=express();
 app.set('view engine','pug')
 app.set('views','./views')
