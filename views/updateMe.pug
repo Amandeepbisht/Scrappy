@@ -1,0 +1,58 @@
+doctype html
+head
+  title SCRAPPY
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  // Bootstrap CSS for styling and layout
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  //<link rel='stylesheet' href='./style_boot.css'>
+  link(href='/css/bootstrap.css' rel='stylesheet' type='text/css')
+  link(href='/css/style_sheet.css' rel='stylesheet' type='text/css')
+
+.container-fluid.top
+  .row
+    .col
+      h.app_name= `Scrappy`
+      .msgNotify= newMsgs
+      a(href='/myProfile')
+        p.topName= user.name.split(' ')[0]
+      image.top_pic(alt='my_profile' src=`/images/${user.profilePhoto}`)
+         
+  .container
+    .row.justify-content-center.update_me_container
+      .col-lg-6
+        form#form_update_page
+          label.register_name(for='register_name') Name
+          input#register_name(type='text')
+          br
+          br
+          label.register_city(for='register-city') Current City
+          input#register_city(type='text')
+          br
+          br
+          label.myself(for='myself') About Me
+          textarea#myself(type='myself'  form='login_form')
+          br
+          br
+          label.gender_select(for='gender-select') Your gender
+          select#gender_select(name='gender-select')
+            option(value='male') Male
+            option(value='female') Female
+          br
+          br
+          label.upload_pic(for='upload_pic') Choose photo
+          input#upload_pic(type='file',accept='image/*' form='login_form' name='photo') 
+          .update_page_msg
+
+        .update_btns
+          button.save_changes_btn(type='submit') Save Changes
+          button.update_password_btn Update Password
+          button.back_to_my_profile_btn Home 
+        
+  
+
+
+
+<script src=https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js></script>			
+script(src='/js/updateMe.js')
+script(src='/js/msgNotify.js')

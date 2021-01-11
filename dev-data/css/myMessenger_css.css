@@ -1,0 +1,386 @@
+body,html{
+	width:100%;
+	margin:0;
+	height:100%;
+	overflow:hidden;
+	background-color: #d9d9d9;
+	
+}
+
+.top{
+	height:7vh;
+	background-color:#bfbfbf;
+	padding-top: 10px;
+	padding-bottom: 50px;
+	width:100%;
+	margin-right: 0px;
+}
+
+.app_name{
+	font-size: 1.8em;
+	width:100%;
+	
+	margin-bottom: 10px;
+}
+.top_pic{
+	float:right;
+	width:50px;
+	height:50px;
+	border-radius: 50%;
+}
+.topName{
+	float:right;
+	margin-top:10px;
+	margin-right: 20px;
+	margin-left: 20px;
+	font-weight: 500;
+}
+.messenger_container{
+	background-color:#d9d9d9;
+}
+.left_container{
+	height:100%;
+	width:30%;
+	float:left;
+	overflow: auto;
+	background-color: #e6e6e6;
+	border-radius: 10px;
+
+}
+.right_container{
+	height:100%;
+	width:70%;
+	float:right;
+}
+.reciever_name{
+	height:8vh;
+	display:block;
+}
+.chat_row{
+	background-color: #999999;
+	height:74vh;
+
+}
+.chat_col{
+	height:100%;
+}
+#conversation{
+	width:100%;
+
+	overflow:auto;
+}
+.send_msgs{
+	height:20%;
+	width:100%;
+}
+
+.all_msgs{
+	height:100%;
+	overflow:auto;
+}
+#my_message{
+	width:77%;
+	border-radius: 15px;
+}
+.send_btn{
+	width:23%;
+	float:left;
+	border-radius:15px;
+	
+
+}
+.send_btn:hover{
+	background-color: #990000;
+	color:white;
+}
+
+.my_profile{
+	width:100%;
+	float:left;
+	
+	padding-top: 8px;
+}
+.profile_btn{
+	width: 70%;
+	display:inline-block;
+	border-radius: 10px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+
+}
+.profile_btn:hover{
+	background-color: #990000;
+	color:white
+}
+.messenger_heading{
+	display:block;
+	
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height:6vh;
+	padding-top: 10px;;
+}
+
+.messenger_friends{
+	
+	background-color: #e6e6e6;
+	height: 78vh;
+	
+	
+}
+.recipient{
+	font-size: 1.5em;
+
+	margin-left: 10px;
+}
+.friend_name{
+	margin-bottom: 10px;
+}
+.newMsgNotify{
+	position:relative;
+	color:tomato;
+	
+	bottom:28px;
+	z-index:32;
+}
+.new_message{
+	text-align: center;
+	font-weight: 550;
+	border-radius:14px;
+}
+.arrow{
+	
+	padding:6px;
+	border-radius: 4px;
+	background-color: white;
+}
+
+
+
+
+
+
+
+/*******************************/
+
+.sent_msg{
+	
+	float:right;
+	max-width:60%;
+	min-width: 50%;
+	margin-right:20px;
+	padding:5px;
+	height:auto;
+	margin-left:20px;
+	margin-top: 10px;
+	margin-bottom:10px;
+	overflow-wrap: break-word
+}
+.recieved_msg{
+	float:left;
+	
+	width:50%;
+	height:auto;
+	margin-left:20px;
+	margin-bottom:10px;
+	padding: 5px;
+	margin-right:20px;
+	margin-top: 10px;
+	overflow-wrap: break-word
+}
+.message_S{
+	background-color:#005c99 ;
+	
+	padding:10px;
+	color:white;
+	text-align: left;
+	max-width:100%;
+	overflow-wrap: break-word;
+	float:right;
+	border-radius: 12px;
+}
+.message_R{
+	background-color:#333333 ;
+	padding:10px;
+	text-align: left;
+	float:left;
+	border-radius: 12px;
+	color:white;
+	max-width:100%;
+	
+}
+
+.no_friends_pop_up{
+	padding:10px;
+	background-color: #990000;
+	color: white;
+	border-radius:25px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	
+}
+.no_friend_btn{
+	width:20%;
+	margin-left: 40%;
+	background-color: gray;
+	border-radius: 10px;
+}
+
+.messenger_btn,.update_me_btn,.other_users_btn,.sign_out_btn{
+	background-color: gray;
+	border-radius: 10px;
+	padding:4px;
+	color:white;
+	background-color: #990000;
+}
+
+.friend{
+	background-color: #c2d6d6;
+	padding-left:10px;
+	padding-bottom:20px;
+	padding-top:20px;
+	border-radius: 22px;
+	width:100%;
+	height:60px;
+	
+}
+#msg_notify{
+	border:1px solid black;
+	font-size: 18px;
+	color:white;
+	position:relative;
+	bottom:52px;
+	left:85px;
+	background-color:#990000;
+	z-index:10;
+	padding:5px;
+	border-radius: 8px;
+}
+
+.user_name_my_messenger{
+	color:black;
+	font-size: 1.1rem;
+}
+
+.user_name_my_messenger:hover{
+	color:tomato;
+}
+
+.friend:hover{
+	background-color:#85adad;
+}
+/* .friend_active{
+	background-color:#999999;
+} */
+.myMessenger_tag{
+	color:black;
+	
+
+	border:2px solid #e6e6e6;
+	display:block;
+	height:100%;
+}
+
+.friend_active{
+	background-color: #999999;
+}
+.my_profile_btn{
+	margin-top: 10px;
+	margin-left: 10px;
+	height:30px;
+	width:90px;
+	border-radius: 10px;
+	border:1px solid black;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.my_profile_btn:hover{
+	background-color: #990000;
+	color: white
+}
+
+.popup_error{
+	border:1px solid  black;
+	width:25%;
+	margin-left:38%;
+	height:50px;
+	text-align: center;
+	z-index: 21;
+	position:relative;
+	background-color: red;
+	bottom:60px;
+	border-radius: 15px;
+	
+}
+.popup_success{
+	border:1px solid  black;
+	width:25%;
+	margin-left:38%;
+	height:50px;
+	text-align: center;
+	z-index: 21;
+	position:relative;
+	background-color: #a3a375;
+	bottom:60px;
+	border-radius: 15px;
+}
+
+.popup{
+	text-align:center;
+	margin-top:auto;
+	padding-top: 10px;
+	font-size:20px;
+	padding-top:10px;
+}
+
+a{
+	text-decoration: none;
+}
+
+.block_unblock{
+	float:right;
+	border-radius:10px;
+	width:100%;
+}
+.block_unblock:hover,.user_profile:hover{
+	background-color: #990000;
+	color: white
+}
+#blocked_user{
+	background-color:red;
+	color: white
+}
+
+
+.user_profile{
+	border-radius:10px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	float:right;
+
+
+}
+
+.err_msg_container{
+	background-color: #990000;
+}
+.err_msg{
+	font-size: 20px;
+	font-family: "Courier New", Courier, monospace;
+	color:white;
+}
+
+.close_pop_up{
+	border:2px solid black;
+
+	font-size: 20px;
+	font-family: "Courier New", Courier, monospace;
+	font-weight: 900;
+	border-radius: 30px;
+}
+.home{
+	height:5vh;
+	margin-bottom: 0px;
+}
+.recipient_pic{
+	width:50px;
+	height:50px;
+	border-radius: 50%;
+}

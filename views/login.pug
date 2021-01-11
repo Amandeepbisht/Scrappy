@@ -1,0 +1,37 @@
+doctype html
+head
+  title SCRAPPY
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  // Bootstrap CSS for styling and layout
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  //<link rel='stylesheet' href='./style_boot.css'>
+  link(href='./../css/bootstrap.css' rel='stylesheet' type='text/css')
+  link(href='./../css/style_sheet.css' rel='stylesheet' type='text/css')
+.container-fluid.top
+  .row
+    .col
+      h.app_name Scrappy
+.container.about_app
+  .row.justify-content-center
+    .col-lg-8.right_container
+      .row.justify-content-center.start_page
+        .col#login_form
+          form
+            input#email_id(type='text' placeholder='email id') 
+            br
+            br
+            input#password(type='password' placeholder='password')
+          #login_button    
+            button.login_btn Log In
+          #signup_button
+            p.ask_signup Don't have an account?
+              button.sign_up_btn Sign Up
+          button.reset_password_btn Forgot Password?
+          button.lost_login_link Lost your login link?
+      .row.justify-content-center.log_in_form_notify 
+        .col-lg-4.col-md-4     
+
+      
+script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js')
+script(src='/js/login.js')

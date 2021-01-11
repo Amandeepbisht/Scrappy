@@ -1,0 +1,72 @@
+doctype html
+head
+  title SCRAPPY
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  // Bootstrap CSS for styling and layout
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  //<link rel='stylesheet' href='./style_boot.css'>
+  link(href='./../css/bootstrap.css' rel='stylesheet' type='text/css')
+  link(href='./../css/style_sheet.css' rel='stylesheet' type='text/css')
+
+.container-fluid.top
+  .row
+    .col
+      h.app_name= `Scrappy`
+      .msgNotify= newMsgs
+      a(href='/myProfile')
+        p.topName= user.name.split(' ')[0]
+      image.top_pic(alt='my_profile' src=`/images/${user.profilePhoto}`)
+
+.container-fluid.my_profile_body
+  .row
+    .col-lg-5.col-md-4.col-sm-0
+    .col-lg-7.col-md-8.col-sm-12
+      .row.profile_btns
+        .col-lg-3.padding-0
+          a.send_msg( title=`${otherUser._id}`) 
+              button.send_msg_btn_other_user(type='submit') Message
+        .col-lg-3.padding-0
+          a(href=`/myProfile`)    
+            button.my_profile_btn_other_user(type='submit') Home
+        .col-lg-3.padding-0
+          a(href=`/otherUsers`)   
+            button.other_users_profile_btn(type='submit') People
+        .col-lg-3.padding-0    
+            button.sign_out_btn_other_users(type='submit') Sign Out
+.container-fluid.bottom.about_section
+  .row
+    .col-lg-4.col-md-4
+      .about_me
+        .about_me
+          h3.section_name ABOUT ME:
+          p= otherUser.aboutMe
+    .col-lg-8.col-md-8
+      .row.photo-row
+        .col-lg-6.mx-auto  
+            .my_pic
+              img(alt='my_profile' src=`../images/${otherUser.profilePhoto}`) 
+
+      .row.justify-content-center
+        .col-lg-6.my_description
+          .row
+            .col
+              h6.name NAME:
+            .col
+              h6.my_name= otherUser.name
+          .row
+            .col
+              h6.current_city CURRENT CITY:
+            .col
+              h6.my_city= otherUser.CurrentCity
+          .row
+            .col
+              h6.gender GENDER:
+            .col
+              h6.my_gender= otherUser.gender         
+
+
+
+script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js')    
+script(src='/js/otherUser.js')
+script(src='/js/msgNotify.js')
