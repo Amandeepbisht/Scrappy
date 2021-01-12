@@ -30,7 +30,7 @@ module.exports= class Email{
   }
   async send(template,subject){
     //1) generate html base in the pug
-    console.log(`${__dirname}`)
+    
     let html=pug.renderFile(`${__dirname}/../views/email/${template}.pug`,{
         firstName:this.name,
         url:this.url,

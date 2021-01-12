@@ -35,12 +35,12 @@ const userProfile=async()=>{
   try{
     let res=await axios({
       method:'GET',
-      url:'http://127.0.0.1:3000/api/v1/user/myProfile'
+      url:'/api/v1/user/myProfile'
     })
     return res.data
   }
   catch(err){
-    console.log(err)
+    //console.log(err)
   }
 } 
 
@@ -79,15 +79,15 @@ const logout=async()=>{
   try{
     const res=await axios({
       method:'GET',
-      url:'http://127.0.0.1:3000/api/v1/user/logout'
+      url:'/api/v1/user/logout'
     })
-    console.log(res)
+    
     if (res.data.status=='success'){
       window.open(`http://127.0.0.1:3000/login`,"_self")
     }
   }
   catch(err){
-    console.log(err.response.data)
+    //console.log(err.response.data)
   }
 }
 

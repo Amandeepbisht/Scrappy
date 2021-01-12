@@ -51,9 +51,9 @@ document.querySelector('.save_reset_pswd_btn').addEventListener('click',async e=
     passwordConfirm:document.getElementById('confirm_reset_password').value,
     token:document.querySelector('.save_reset_pswd_btn').value
   }
-  console.log(obj)
+  
   let reset=await resetPassword(obj)
-  console.log(reset)
+  
   if(reset.status=='success'){
     createResetContainer('success','Password changed successfully. Try login again.')
   }

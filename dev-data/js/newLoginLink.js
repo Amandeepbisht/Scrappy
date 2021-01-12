@@ -3,17 +3,16 @@ const sendNewLink=async(email_id)=>{
   try{
     res=await axios({
       method:'POST',
-      url:'http://127.0.0.1:3000/api/v1/user/resendLoginLink',
+      url:'/api/v1/user/resendLoginLink',
       data:{
         email:email_id
       }
     })
-    console.log(res.data)
+    
     createNotify('success','A new link has been sent at your email-id')
   }
   catch(err){
-    console.log(err.response.data)
-    
+   //console.log(err.response.data)
     createNotify('error',err.response.data.message)
   }
   
@@ -22,7 +21,7 @@ const sendNewLink=async(email_id)=>{
 document.querySelector('.send_reset_link').addEventListener('click', e=>{
   e.preventDefault()
   const email=document.getElementById('email_id_forgotPassword').value
-  console.log(email)
+  
   sendNewLink(email);
 })
 document.querySelector('.back_to_login').addEventListener('click',e=>{

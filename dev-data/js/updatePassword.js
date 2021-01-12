@@ -39,15 +39,14 @@ const updatePassword=async(password,newPassword,confirmPassword)=>{
   try{
     res= await axios({
       method:'PATCH',
-      url:'http://127.0.0.1:3000/api/v1/user/updatePassword',
+      url:'/api/v1/user/updatePassword',
       data:{
         password:password,
         newPassword:newPassword,
         confirmPassword:confirmPassword
       }
     })
-    console.log("This is log from line#43 updatePassword.js")
-    console.log(res.data)
+    
     if(res.data.status=='success'){
       notify_new('Password Updated successfully','success') 
       //setTimeout(removeNotify,3000) 
@@ -61,9 +60,9 @@ const updatePassword=async(password,newPassword,confirmPassword)=>{
   catch(err){
     //console.log("This is log from line#19 updatePassword.js")
     let msg
-    console.log(err.response.data.message)
-    console.log(err.response.data)
-    console.log(err.response.data.errorName)
+    // console.log(err.response.data.message)
+    // console.log(err.response.data)
+    // console.log(err.response.data.errorName)
     if(err.response.data.errorName=='ValidationError'){
       msg=err.response.data.message.split(':')[err.response.data.message.split(':').length-1]
       notify_new(msg,'err')
@@ -86,7 +85,7 @@ document.querySelector('.update_password_btn').addEventListener('click',e=>{
   let password=document.getElementById('current_password').value;
   let newPassword=document.getElementById('new_password').value;
   let confirmPassword=document.getElementById('confirm_new_password').value;
-  console.log(password,newPassword,confirmPassword)
+  
   updatePassword(password,newPassword,confirmPassword)
   document.querySelector('.update_password_btn').disabled=true;
 })

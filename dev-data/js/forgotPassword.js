@@ -2,7 +2,7 @@ const resetPasswordLink=async(emailId)=>{
   try{
     let res=await axios({
       method:'POST',  
-      url:'http://127.0.0.1:3000/api/v1/user/forgotPassword',
+      url:'/api/v1/user/forgotPassword',
       data:{
         email:emailId
       }
