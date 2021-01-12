@@ -2,12 +2,12 @@ const userProfile=async()=>{
   try{
     let res=await axios({
       method:'GET',
-      url:'http://127.0.0.1:3000/api/v1/user/myProfile'
+      url:'/api/v1/user/myProfile'
     })
     return res.data
   }
   catch(err){
-    console.log(err)
+    //console.log(err)
   }
 } 
 
@@ -15,16 +15,16 @@ const logout=async()=>{
   try{
     const res=await axios({
       method:'GET',
-      url:'http://127.0.0.1:3000/api/v1/user/logout'
+      url:'/api/v1/user/logout'
     })
-    console.log(res)
+    
     if (res.data.status=='success'){
       window.open(`http://127.0.0.1:3000/login`,"_self")
       
     }
   }
   catch(err){
-    console.log(err.response.data)
+    //console.log(err.response.data)
   }
 }
 
@@ -49,7 +49,7 @@ const sendMessage=async()=>{
   else if(recipientArr.length==0){
     recipientObj.isFriend=false
   }
-  console.log(recipientObj)
+  
   return recipientObj
 }
 sendMessage()
@@ -60,7 +60,7 @@ document.querySelector('.sign_out_btn_other_users').addEventListener('click',e=>
 })
 document.querySelector('.send_msg').addEventListener('click',async e=>{
   let friend=await sendMessage()
-  console.log(friend)
+  
   if (friend.isFriend==true){
     window.open(`http://127.0.0.1:3000/myMessenger/${friend.recipient_id}`,"_self")
   }

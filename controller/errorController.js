@@ -73,14 +73,14 @@ const handleDuplicateKeyError=(err)=>{
   
   const msg=err.message.match(/(["'])(?:(?=(\\?))\2.)*?\1/)[0]
  
-  console.log(msg)
+  //console.log(msg)
   return new AppError(`${msg} already exists`,400)
 }
 
 const handleValidationError=(err)=>{
   
   const errors=Object.keys(err.errors).map(x=>{return (err.errors[x].message)})
-  console.log(errors)
+  //console.log(errors)
   let message=`${errors.join('')}`
   
   return new AppError(message,400)
@@ -98,11 +98,11 @@ module.exports=(err,req,res,next)=>{
     sendErrorDev(err,req,res)
   }
   if(process.env.NODE_ENV=='production'){
-    console.log("Hey this the error in production mode....fix it ")
+    
     if (err.name=="CastError"){err=handleCastErrorDB(err)}
     if (err.code=="11000"){ err=handleDuplicateKeyError(err)}
     if (err.name=="ValidationError"){
-      console.log("hey guess what its a validation error in production")
+      
       err=handleValidationError(err)}
     if (err.name=="JsonWebTokenError"){err=handleJwtError(err)}
     

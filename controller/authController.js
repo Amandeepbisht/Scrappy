@@ -46,7 +46,7 @@ exports.signUp=catchAsync(async(req,res,next)=>{
 
 // deletes the user 
 exports.lostLoginLink=catchAsync(async(req,res,next)=>{
-  console.log("This is the log from line#49 of authController.js")
+  
 
   let user=await User.findOne({email:req.body.email})
   if(user==undefined){
@@ -161,7 +161,7 @@ exports.forgotPassword=async(req,res,next)=>{
     })
   }
   catch(err){
-    console.log(err)
+    
     user.passwordResetToken=undefined;
     user.passwordResetExpires=undefined;
     await user.save({validateBeforeSave:false})
@@ -178,7 +178,7 @@ exports.resetPassword=catchAsync(async(req,res,next)=>{
                       .update(userToken)
                       .digest('hex');
   const user= await User.findOne({passwordResetToken:hashedToken})
-  console.log(userToken)
+  
   
   if(!user){
     return next(new AppError('The user exist no more',401))
@@ -213,7 +213,7 @@ exports.updatePassword=catchAsync(async(req,res,next)=>{
     return next(new AppError('Incorrect password..please try again',401))
   }
   // 3) update the password
-  console.log("This is the log from line#207")
+ 
   user.password=req.body.newPassword;
   user.passwordConfirm=req.body.confirmPassword;
   if(user.password!=user.passwordConfirm){

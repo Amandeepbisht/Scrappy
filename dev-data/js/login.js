@@ -2,17 +2,17 @@
 const removeAlert=()=>{
   var el=document.querySelector(`.popup_error`)
   if(el){
-    console.log('line#5')
+    
     el.parentElement.removeChild(el)
   }
 }
 
 const showAlert=(msg,type)=>{
-  console.log('msg')
+  
   let div=document.createElement('div')
   div.className=`popup_${type}`
   div.innerHTML=`<h8 class="popup">${msg}</h8>`
-  console.log(div)
+  
   document.querySelector('.log_in_form_notify').appendChild(div)
   if(type=='error'){
     
@@ -26,7 +26,7 @@ const login=async(email,password)=>{
   try{
     res=await axios({
       method:'POST',
-      url:'http://127.0.0.1:3000/api/v1/user/login',
+      url:'/api/v1/user/login',
       data:{
         email:email,
         password:password
@@ -58,12 +58,9 @@ const forgotPassword=async(email)=>{
       }
       
     })
-
-    console.log(res.data.data)
-    
   }
   catch(err){
-    console.log(err.response.data.message)
+    //console.log(err.response.data.message)
   }
 }
 

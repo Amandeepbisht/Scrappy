@@ -2,7 +2,7 @@ const updateUser=async(obj)=>{
   try{
     let res=await axios({
       method:'PATCH',
-      url:'http://127.0.0.1:3000/api/v1/user/updateMe',
+      url:'/api/v1/user/updateMe',
       data:obj
     })
     return(res.data)
@@ -18,13 +18,13 @@ const my_data=async()=>{
   try{
     let res=await axios({
       method:'GET',
-      url:'http://127.0.0.1:3000/api/v1/user/myProfile',
+      url:'/api/v1/user/myProfile',
       
     })
     return res.data;
   }
   catch(err){
-    console.log(err)
+    //console.log(err)
   }
 }
 
@@ -100,22 +100,19 @@ document.querySelector('.save_changes_btn').addEventListener('click',async e=>{
   let el=document.body
   e.preventDefault()
   let update=getUpdate();
-  console.log(update)
+  
 
   if (update){
     let err_res=await updateUser(update)
-    console.log(err_res)
+    
     if(err_res.status=='error'){
      update_error(err_res.message.split('.'))
      document.querySelector('.save_changes_btn').disabled=true
-     
-
-    }
+     }
     else{
       save_updates()
       document.querySelector('.save_changes_btn').disabled=true
       if(document.body.scrollHeight!=document.body.scrollTop){
-        console.log('Ding Dong')
       }
     }
   }

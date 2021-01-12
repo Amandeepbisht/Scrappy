@@ -10,10 +10,10 @@ const register=async(obj)=>{
   try{
       res= await axios({
       method:'POST',
-      url:'http://127.0.0.1:3000/api/v1/user/signUp',
+      url:'/api/v1/user/signUp',
       data:obj
     })
-    console.log(res)
+    
     if(res.data.status=='success'){
       signUpError({message:'a link has been sent to your email id. Use that link to access your account and register it successfully.'})
     }
@@ -47,11 +47,11 @@ const signUpError=(err)=>{
   else if(err.message.endsWith('already exists')==false){
     err_arr=err.message.split('.');
   } 
-  console.log(err_arr)
+  
   let ul=document.createElement('UL')
   ul.className='error_list'
    err_arr.forEach(el=>{
-     console.log(el)
+     
      if(el.length>0){
       let err_div=document.createElement("div")
       err_div.className='signUp_Notify'

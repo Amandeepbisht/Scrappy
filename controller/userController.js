@@ -93,8 +93,8 @@ exports.updateMe=catchAsync(async(req,res,next)=>{
       newObj[el]=obj[el]
    }
  })
- console.log("This is the log from line#96 of userController.js")
- console.log(newObj)
+
+ 
  if(req.file){
    newObj.profilePhoto=req.file.filename
  }
@@ -158,7 +158,7 @@ exports.myProfile=catchAsync(async(req,res,next)=>{
 exports.block=catchAsync(async(req,res,next)=>{
   let friend_id=req.body.friend_id
   let user=req.user
-  console.log(user)
+  
  
   await User.updateOne(
     {_id:user._id,"chatList.friendId":friend_id},
@@ -173,7 +173,7 @@ exports.block=catchAsync(async(req,res,next)=>{
 exports.unblock=catchAsync(async(req,res,next)=>{
   let friend_id=req.body.friend_id
   let user=req.user
-  console.log(user)
+  
  
   await User.updateOne(
     {_id:user._id,"chatList.friendId":friend_id},

@@ -58,8 +58,8 @@ const sendText=async(message,reciever_id,sender_id)=>{
    return(res.data)
   }
   catch(err){
-    console.log(err.response.data.message)
-    console.log(err.response.data.stack)
+    // console.log(err.response.data.message)
+    // console.log(err.response.data.stack)
     create_Pop_up(err.response.data.message)
   }
 }
@@ -88,7 +88,7 @@ const loadMessages=async()=>{
     let res=await axios({
       method:'GET',
       type:JSON,
-      url:'http://127.0.0.1:3000/api/v1/message/getChatMessages',
+      url:'/api/v1/message/getChatMessages',
       params:{
         reciever_id:reciever_id,
         sender_id:sender_id
@@ -97,7 +97,7 @@ const loadMessages=async()=>{
     return res.data.data.messageArray
   }
   catch(err){
-    console.log(err.response.data)
+    //console.log(err.response.data)
   }
 }
 
@@ -234,7 +234,7 @@ document.getElementById('conversation').addEventListener('scroll',()=>{
 })
 
 document.querySelector('.chat_row').addEventListener('click',(e)=>{
-  console.log(e.target.className)
+  
   let el=e.target.classList[e.target.classList.length-1]
   if (document.querySelector(`.${el}`).textContent='New Message'){
     scrollBottom();
