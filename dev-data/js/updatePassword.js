@@ -30,12 +30,10 @@ document.querySelector('.update_page').addEventListener('click',e=>{
     document.getElementById('confirm_new_password').value='';
     document.querySelector('.update_password_btn').disabled=false;
   }
-  
 })
 
 const updatePassword=async(password,newPassword,confirmPassword)=>{
   let res
-  
   try{
     res= await axios({
       method:'PATCH',
@@ -54,8 +52,6 @@ const updatePassword=async(password,newPassword,confirmPassword)=>{
       document.getElementById('new_password').value='';
       document.getElementById('confirm_new_password').value='';
     }
-
-    
   }
   catch(err){
     //console.log("This is log from line#19 updatePassword.js")
@@ -78,14 +74,13 @@ const updatePassword=async(password,newPassword,confirmPassword)=>{
 
 document.querySelector('.back_to_my_profile_btn').addEventListener('click',e=>{
   e.preventDefault();
-  window.open('http://127.0.0.1:3000/myProfile',"_self")
+  window.open('/myProfile',"_self")
 })
 document.querySelector('.update_password_btn').addEventListener('click',e=>{
   e.preventDefault();
   let password=document.getElementById('current_password').value;
   let newPassword=document.getElementById('new_password').value;
   let confirmPassword=document.getElementById('confirm_new_password').value;
-  
   updatePassword(password,newPassword,confirmPassword)
   document.querySelector('.update_password_btn').disabled=true;
 })

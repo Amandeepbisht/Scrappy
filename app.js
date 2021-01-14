@@ -11,6 +11,7 @@ const helmet=require('helmet')
 const mongoSanitize=require('express-mongo-sanitize')
 const xss=require('xss-clean'); 
 const path=require('path')
+const cors=require('cors')
 
 // start express app
 const app=express();
@@ -30,12 +31,20 @@ const limiter=rateLimit({
 app.use(mongoSanitize()) // protect against the NOSQL query injection
 app.use(xss()) // protect against xss sttacks
 app.use(cookieParser())
+app.use(cors())
+app.set('trust proxy',1)
+app.use(function (req, res, next) {
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.header('Expires', '-1');
+  res.header('Pragma', 'no-cache');
+  next()
+});
 app.use((req,res,next)=>{
   req.requestTime= new Date().toISOString();
   //console.log(req.cookies)
    next()
 })
-
+app.enable('trust proxy');
 app.use('/',viewsRouter)
 app.use('/api/v1/user',userRouter)
 app.use('/api/v1/message',messageRouter)

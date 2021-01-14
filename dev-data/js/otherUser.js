@@ -19,7 +19,7 @@ const logout=async()=>{
     })
     
     if (res.data.status=='success'){
-      window.open(`http://127.0.0.1:3000/login`,"_self")
+      window.open(`/login`,"_self")
       
     }
   }
@@ -62,10 +62,10 @@ document.querySelector('.send_msg').addEventListener('click',async e=>{
   let friend=await sendMessage()
   
   if (friend.isFriend==true){
-    window.open(`http://127.0.0.1:3000/myMessenger/${friend.recipient_id}`,"_self")
+    window.open(`/myMessenger/${friend.recipient_id}`,"_self")
   }
   else if (friend.isFriend==false){
-    window.open(`http://127.0.0.1:3000/chat/${friend.recipient_id}`,"_self")
+    window.open(`/chat/${friend.recipient_id}`,"_self")
   }
   
 })

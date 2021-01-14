@@ -1,9 +1,7 @@
 document.querySelector('.back_to_login_btn').addEventListener('click',e=>{
   e.preventDefault();
-  window.open('http://127.0.0.1:3000/login',"_self")
+  window.open('/login',"_self")
 })
-
-
 
 const register=async(obj)=>{
   let res
@@ -13,7 +11,6 @@ const register=async(obj)=>{
       url:'/api/v1/user/signUp',
       data:obj
     })
-    
     if(res.data.status=='success'){
       signUpError({message:'a link has been sent to your email id. Use that link to access your account and register it successfully.'})
     }
@@ -22,6 +19,7 @@ const register=async(obj)=>{
       signUpError(err.response.data)
   }
 }
+
 document.querySelector('.register_btn').addEventListener('click',async e=>{
   e.preventDefault();
   let obj=new FormData()
@@ -35,7 +33,6 @@ document.querySelector('.register_btn').addEventListener('click',async e=>{
   obj.append('photo',document.getElementById('upload_pic').files[0])
   await register(obj)
 })
-
 
 const signUpError=(err)=>{
   let err_arr
@@ -58,7 +55,6 @@ const signUpError=(err)=>{
       let p=document.createElement('p');
       if(err.status=='error'){p.className='sign_up_error';}
       else if(err.status='success'){p.className='sign_up_success'}
-      
       let text=el.split(': ')
       let err_txt=document.createTextNode(text[text.length-1])
       p.appendChild(err_txt)
@@ -81,6 +77,5 @@ document.querySelector('.sign_up_err').addEventListener('click',e=>{
     el.parentNode.removeChild(el)
     document.querySelector('.register_btn').disabled=false;
   }
-  
 })
 

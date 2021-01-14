@@ -29,6 +29,7 @@
 	width:20px;
 	border-radius: 50%;
 }
+
 /********** main_page*************/
 
 .message{
@@ -633,7 +634,7 @@ a{
 }
 .sign_up_success{
 	color:black;
-	font-weight: 50;
+	font-weight: 550;
 }
 
 .error{
@@ -647,10 +648,11 @@ a{
 }
 
 .close_btn{
-	
-	border:1px solid black;
+	background-color: #00cccc;
+	border-radius: 10px;
 	margin-left: 30px;
 	width:130px;
+	font-weight: 550;
 }
 
 .register_btn,.back_to_login_btn{

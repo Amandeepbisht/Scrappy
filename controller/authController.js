@@ -11,14 +11,14 @@ const signToken=(userId)=>{
   return jwt.sign({id:userId},process.env.JWT_SECRET,{expiresIn:'90d'}) 
 }
 
-const createSendToken=(statusCode,user,res)=>{
+const createSendToken=(statusCode,user,res,req)=>{
   let token=signToken(user._id)
   let cookieOptions={
-    expires:new Date(Date.now()+process.env.COOKIE_EXPIRES*24*60*1000),
+    expires:new Date(Date.now()+process.env.COOKIE_EXPIRES*24*60*60*1000),
     httpOnly:true
     }
   if(process.env.NODE_ENV=='production'){
-    cookieOptions.secure=false;
+    cookieOptions.secure= req.headers['x-forwarded-proto'] === 'https';
   }
   user.password=undefined;// the password does not show up in the response
   res.cookie('jwt',token,cookieOptions)
@@ -27,8 +27,8 @@ const createSendToken=(statusCode,user,res)=>{
     status:'success',
     data:{
       user
-    },
-    token
+    }
+    
   })
   
 }
@@ -41,7 +41,7 @@ exports.signUp=catchAsync(async(req,res,next)=>{
   const user= await User.create(signUpObj)
   const url='http://127.0.0.1:3000/myProfile'
   await new sendEmail(user,url).sendWelcome('welcome','Welcome to scrappy')
-  createSendToken(200,user,res);
+  createSendToken(200,user,res,req);
 })
 
 // deletes the user 
@@ -57,11 +57,12 @@ exports.lostLoginLink=catchAsync(async(req,res,next)=>{
   }
   const url='http://127.0.0.1:3000/myProfile'
   await new sendEmail(user,url).sendWelcome('welcome','Welcome to scrappy')
-  createSendToken(200,user,res);
+  createSendToken(200,user,res,req);
 })
 
 
 exports.logIn=catchAsync(async(req,res,next)=>{
+  
   const {email,password}=req.body;
   //1) check is email and password are there in the request
   if(!email||!password){
@@ -81,24 +82,27 @@ exports.logIn=catchAsync(async(req,res,next)=>{
     return next(new AppError('This email-id is not registered yet!',404))
   }
   
-  createSendToken(200,user,res)
+  createSendToken(200,user,res,req)
+  
 })
 
 exports.protect= catchAsync(async(req,res,next)=>{
+  
   let token;
   //1) getting token and check if its there
   
   if(req.headers.authorization&&req.headers.authorization.startsWith('Bearer')){
+   
     token=req.headers.authorization.split(' ')[1]
   }
+  //console.log(req.headers.cookie.jwt)
   //1A) if no token then fetch it from the cookie 
   if(!token){
     token=req.cookies.jwt;
   }
   //2) verification token
   let decoded= await promisify(jwt.verify)(token,process.env.JWT_SECRET)
-  
-  //console.log(decoded)
+ 
   //3) check if the user still exist
   let freshUser=await User.findOne({_id:decoded.id});
   if(!freshUser){
@@ -109,22 +113,29 @@ exports.protect= catchAsync(async(req,res,next)=>{
     return next(new AppError('Your password have been changed...please use the new one to continue...',401))
   }
   req.user=freshUser;
-
+  res.locals.user=freshUser
   
   next();
 })
 
 exports.isLoggedIn=async(req,res,next)=>{
+  
   try{
     let token
+    
     //1 check if we have the token in the cookie
+    
     if(req.cookies.jwt){
+        
         token=req.cookies.jwt
+        
+
        //2) verify the token
         let decoded= await promisify(jwt.verify)(token,process.env.JWT_SECRET)
         //3) fetch the user from the verififed token
         const freshUser=await User.findById(decoded.id)
         if(!freshUser){
+          
           return next();
         }
         if(freshUser.changedPasswordAfter(decoded.iat)){
@@ -132,6 +143,7 @@ exports.isLoggedIn=async(req,res,next)=>{
         }
         req.user=freshUser;
         res.locals.user=freshUser;
+        
       return next();   
       }
     next();
@@ -198,7 +210,7 @@ exports.resetPassword=catchAsync(async(req,res,next)=>{
   // 3) update password property of the user
   await user.save();
   // 4) log the user in and the token to the user
-  createSendToken(200,user,res)
+  createSendToken(200,user,res,req)
 })         
 
 exports.updatePassword=catchAsync(async(req,res,next)=>{
@@ -221,7 +233,7 @@ exports.updatePassword=catchAsync(async(req,res,next)=>{
   }
   user.passwordChangedAt=Date.now();
   await user.save();
-  createSendToken(200,user,res)
+  createSendToken(200,user,res,req)
 })
 
 exports.logout=catchAsync(async(req,res,next)=>{

@@ -104,7 +104,7 @@ exports.sendMessage=catchAsync(async(req,res,next)=>{
                                 {new:true})  
   }
   if(isFriend!=undefined&&isBlocked==true){
-    return next(new AppError('You have blocked this user...click the "Unblock Contact" button to send message',404))
+    return next(new AppError('You have blocked this user...click the "Unblock" button to send message',404))
   }
   res.status(200).json({
     status:'success',

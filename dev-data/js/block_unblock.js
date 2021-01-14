@@ -17,7 +17,7 @@ const block_friend=async(friend_id)=>{
   try{
     let res=await axios({
       method:'PATCH',
-      url:'/api/v1/user/block_user',
+      url:'/block_user',
       data:{
         friend_id:friend_id
       }
@@ -30,12 +30,9 @@ const block_friend=async(friend_id)=>{
 }
 
 document.querySelector('.messenger_friends').addEventListener('click',e=>{
-  
   let event=e.target
- 
   let friend_id=event.parentElement.parentElement.parentElement.parentElement.id.split('_')[2]
   if(event.className=='block_unblock'){
-    
     if (event.textContent=='Unblock'){
       unblock_friend(friend_id)
     }

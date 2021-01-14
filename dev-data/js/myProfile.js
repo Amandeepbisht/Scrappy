@@ -1,5 +1,3 @@
-
-
 const no_friends_pop_up=()=>{
   let container=document.createElement('div');
   container.className='container'
@@ -40,13 +38,14 @@ const userProfile=async()=>{
     return res.data
   }
   catch(err){
-    //console.log(err)
+    //console.log(err.response.data)
   }
 } 
 
 // asigns the id to the "friend_id" variable
 const chatList=async()=>{
   const friendList=await userProfile();
+  console.log(friendList)
   const chatList=friendList.data.arr;
   let sentArr=[]
   let recievedArr=[]
