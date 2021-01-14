@@ -17,6 +17,7 @@ exports.forgotPassword=async(req,res,next)=>{
 }
 
 exports.getLoginForm=catchAsync(async(req,res,next)=>{
+    
     res.status(200).render('login')
 })
 
@@ -25,6 +26,7 @@ exports.getSignUpForm=catchAsync(async(req,res,next)=>{
 })
 
 exports.getMyProfile=catchAsync(async(req,res,next)=>{
+    
     const user=req.user
     const newMsgs=(req.newMsgs)
     res.status(200).render('my_profile_page',{
@@ -39,11 +41,7 @@ exports.getAllUsers=catchAsync(async(req,res,next)=>{
         return next(new AppError('Please log in again',404))
     }
     const users=await User.find();
-
-    
     let usersArr=[]
-    
-    
     users.forEach(el=> {
         if(el.email!=req.user.email){
             usersArr.push(el)        
@@ -95,6 +93,7 @@ exports.updateMe=catchAsync(async(req,res,next)=>{
     if(!req.user){
         return next(new AppError('Please login again',404))
     }
+    //console.log(req.user)
     res.status(200).render('updateMe',{
         newMsgs:newMsgs.notify
     })

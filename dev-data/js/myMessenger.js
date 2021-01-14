@@ -1,5 +1,3 @@
-
-
 const userProfile=async()=>{
   try{
     let res=await axios({

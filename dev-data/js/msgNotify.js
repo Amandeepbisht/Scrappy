@@ -1,5 +1,3 @@
-
-
 const user=async()=>{
   try{
     let res=await axios({
@@ -12,7 +10,6 @@ const user=async()=>{
     //console.log(err)
   }
 } 
-
 
 // checks of the user have recieved any new msg
 const createSound=()=>{
@@ -46,9 +43,6 @@ const msgNotify=async()=>{
     }
   }
 }
-
-
-
 
 setInterval(()=>{msgNotify()},1200)
 

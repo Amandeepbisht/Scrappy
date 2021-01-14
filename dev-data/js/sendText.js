@@ -48,7 +48,7 @@ const sendText=async(message,reciever_id,sender_id)=>{
   try{
     res=await axios({
       method:'POST',
-      url:`http://127.0.0.1:3000/api/v1/message/${reciever_id}`,
+      url:`/api/v1/message/${reciever_id}`,
       data:{
         text:message,
         reciever_id:reciever_id,

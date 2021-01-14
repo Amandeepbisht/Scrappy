@@ -2,7 +2,7 @@ const resetPassword=async(obj)=>{
   try{
     let res=await axios({
       method:'PATCH',
-      url:`http://127.0.0.1:3000/api/v1/user/resetPassword/${obj.token}`,
+      url:`/api/v1/user/resetPassword/${obj.token}`,
       data:{
         password:obj.password,
         passwordConfirm:obj.passwordConfirm 
@@ -40,7 +40,7 @@ document.querySelector('.password_reset_container').addEventListener('click',e=>
     document.getElementById('confirm_reset_password').value='';
   }
   if (e.target.className=='reset_pswd_notify_success'){
-    window.open('http://127.0.0.1:3000/login',"_self")
+    window.open('/login',"_self")
   }
 })
 

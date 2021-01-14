@@ -26,7 +26,7 @@ document.querySelector('.send_reset_link').addEventListener('click', e=>{
 })
 document.querySelector('.back_to_login').addEventListener('click',e=>{
   e.preventDefault();
-  window.open('http://127.0.0.1:3000/login',"_self")
+  window.open('/login',"_self")
 })
 
 const createNotify=(str,msg)=>{

@@ -35,7 +35,7 @@ const password_reset_pop_up=(str)=>{
 }
 document.querySelector('.back_to_login').addEventListener('click',(e)=>{
   e.preventDefault();
-  window.open('http://127.0.0.1:3000/login','_self')
+  window.open('/login','_self')
 })
 document.querySelector('.send_reset_link').addEventListener('click',async e=>{
   e.preventDefault();

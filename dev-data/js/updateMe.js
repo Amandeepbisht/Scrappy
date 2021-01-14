@@ -121,12 +121,12 @@ document.querySelector('.save_changes_btn').addEventListener('click',async e=>{
 
 document.querySelector('.back_to_my_profile_btn').addEventListener('click',e=>{
   e.preventDefault()
-  window.open(`http://127.0.0.1:3000/myProfile`,"_self")
+  window.open(`/myProfile`,"_self")
 })
 
 document.querySelector('.update_password_btn').addEventListener('click',e=>{
   e.preventDefault()
-  window.open(`http://127.0.0.1:3000/updatePassword`,"_self")
+  window.open(`/updatePassword`,"_self")
 })
 
 document.querySelector('.update_page_msg').addEventListener('click',async e=>{
