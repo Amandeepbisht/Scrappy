@@ -17,7 +17,7 @@ const block_friend=async(friend_id)=>{
   try{
     let res=await axios({
       method:'PATCH',
-      url:'/block_user',
+      url:'/api/v1/user/block_user',
       data:{
         friend_id:friend_id
       }
