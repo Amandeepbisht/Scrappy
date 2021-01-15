@@ -8,6 +8,7 @@ const router=express.Router();
 
 router.use(authController.isLoggedIn)
 //router.use(authController.msgNotify)
+router.get('/',viewsController.getLoginForm)
 router.get('/myProfile/updateMe',authController.msgNotify,viewsController.updateMe)
 router.get('/login',viewsController.getLoginForm)
 router.get('/forgotPassword',viewsController.forgotPassword)
