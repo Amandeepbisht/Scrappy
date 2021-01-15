@@ -82,7 +82,7 @@ const logout=async()=>{
     })
     
     if (res.data.status=='success'){
-      window.open(`http://127.0.0.1:3000/login`,"_self")
+      window.open(`/login`,"_self")
     }
   }
   catch(err){
@@ -93,7 +93,7 @@ const logout=async()=>{
 document.querySelector('.messenger_btn').addEventListener('click', async e=>{
   let friend_id=await chatList()
   if(friend_id!=undefined){
-    window.open(`http://127.0.0.1:3000/myMessenger/${friend_id}`,"_self")
+    window.open(`/myMessenger/${friend_id}`,"_self")
   }
   else{
     no_friends_pop_up()
