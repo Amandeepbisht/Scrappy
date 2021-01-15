@@ -39,7 +39,7 @@ exports.signUp=catchAsync(async(req,res,next)=>{
   let signUpObj=req.body
   if(req.file){signUpObj.profilePhoto=req.file.filename}
   const user= await User.create(signUpObj)
-  const url='http://127.0.0.1:3000/myProfile'
+  const url='/myProfile'
   await new sendEmail(user,url).sendWelcome('welcome','Welcome to scrappy')
   createSendToken(200,user,res,req);
 })
@@ -55,7 +55,7 @@ exports.lostLoginLink=catchAsync(async(req,res,next)=>{
   if(user.active==true){
     return next(new AppError("Sorry, a new link can't be sent at your id, as you have been registered already. Use 'Forgot Password' to login again.",404))
   }
-  const url='http://127.0.0.1:3000/myProfile'
+  const url='/myProfile'
   await new sendEmail(user,url).sendWelcome('welcome','Welcome to scrappy')
   createSendToken(200,user,res,req);
 })
