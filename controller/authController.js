@@ -39,7 +39,8 @@ exports.signUp=catchAsync(async(req,res,next)=>{
   let signUpObj=req.body
   if(req.file){signUpObj.profilePhoto=req.file.filename}
   const user= await User.create(signUpObj)
-  const url='/myProfile'
+  const url = `${req.protocol}://${req.get('host')}/myProfile`
+  
   await new sendEmail(user,url).sendWelcome('welcome','Welcome to scrappy')
   createSendToken(200,user,res,req);
 })
