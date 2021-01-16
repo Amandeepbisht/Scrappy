@@ -56,7 +56,7 @@ exports.lostLoginLink=catchAsync(async(req,res,next)=>{
   if(user.active==true){
     return next(new AppError("Sorry, a new link can't be sent at your id, as you have been registered already. Use 'Forgot Password' to login again.",404))
   }
-  const url='/myProfile'
+  const url = `${req.protocol}://${req.get('host')}/myProfile`
   await new sendEmail(user,url).sendWelcome('welcome','Welcome to scrappy')
   createSendToken(200,user,res,req);
 })
