@@ -20,7 +20,7 @@ router.get('/user/:userid',authController.msgNotify,viewsController.getUser)
 router.get('/signUp',viewsController.getSignUpForm)
 router.get('/otherUsers',authController.msgNotify,viewsController.getAllUsers)
 router.get('/resetPassword/:token',viewsController.resetPassword)
-router.get('/myMessenger/:friend_id',authController.msgNotify,viewsController.myMessenger)
+router.get('/myMessenger/:friend_id',authController.msgNotify,userController.checkUpdate,viewsController.myMessenger)
 router.get('/email',viewsController.email)
 router.get('/chat/:userid',authController.msgNotify,viewsController.sendMessage)
 module.exports=router;

@@ -185,3 +185,17 @@ exports.unblock=catchAsync(async(req,res,next)=>{
   })
 })
 
+// this function checks if there users in the chatList of logged in user
+// have updated there name or profile photo
+exports.checkUpdate=catchAsync(async(req,res,next)=>{
+  
+  let user_id=req.user._id;
+  let arr=req.originalUrl.split('/')
+  let friend_id=(arr[arr.length-1])
+  let friend=await User.findById(friend_id)
+  await User.updateOne(
+    {_id:user_id, "chatList.friendId":friend_id},
+    {$set:{"chatList.$.name":friend.name,"chatList.$.friendPic":friend.profilePhoto}}
+  )
+  next()
+})
