@@ -381,7 +381,7 @@ img{
 }
 .home_btn{
 	border:1px solid black;
-	font-family:"Comic Sans MS", cursive, sans-serif ;
+	font-size: 550;
 	background-color: #f2f2f2;
 	padding:10px;
 	border-radius:5px;
