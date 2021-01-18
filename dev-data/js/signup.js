@@ -13,11 +13,23 @@ const register=async(obj)=>{
     })
     if(res.data.status=='success'){
       signUpError({message:'a link has been sent to your email id. Use that link to access your account and register it successfully.'})
+      emptyForm()
     }
   }
   catch(err){
       signUpError(err.response.data)
   }
+}
+
+const emptyForm=()=>{
+  document.getElementById('register_name').value='';
+  document.getElementById('email_id').value='';
+  document.getElementById('password').value='';
+  document.getElementById('retype_password').value='';
+  document.getElementById('register_city').value='';
+  document.getElementById('gender_select').value='--';
+  document.getElementById('myself').value='';
+  document.getElementById('upload_pic').value='';
 }
 
 document.querySelector('.register_btn').addEventListener('click',async e=>{
