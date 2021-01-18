@@ -1,3 +1,7 @@
-let str='aman'
-let x=[str]
-//console.log(x)
+const add=(x)=>{
+  console.log(x+2)
+}
+let two=()=>{
+  return 2
+}
+add(two())

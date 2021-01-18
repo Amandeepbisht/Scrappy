@@ -32,6 +32,7 @@ document.querySelector('.register_btn').addEventListener('click',async e=>{
   obj.append('aboutMe',document.getElementById('myself').value)
   obj.append('photo',document.getElementById('upload_pic').files[0])
   await register(obj)
+  window.scrollTo(0,document.body.scrollHeight)
 })
 
 const signUpError=(err)=>{

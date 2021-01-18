@@ -37,7 +37,7 @@ const createSendToken=(statusCode,user,res,req)=>{
 exports.signUp=catchAsync(async(req,res,next)=>{
   
   let signUpObj=req.body
-  if(req.file){signUpObj.profilePhoto=req.file.filename}
+  if(req.file){signUpObj.profilePhoto=req.file.transforms[0].location}
   const user= await User.create(signUpObj)
   const url = `${req.protocol}://${req.get('host')}/myProfile`
   

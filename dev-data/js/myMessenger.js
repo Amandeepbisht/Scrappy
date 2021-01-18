@@ -118,7 +118,7 @@ const displayChatList=async()=>{
  
   document.querySelector('.recipient').innerHTML=found.name
   document.getElementById(`friend_anchor_${user_id}`).classList.add('friend_active')
-  document.querySelector('.recipient_pic').src=`/images/${found.friendPic}`
+  document.querySelector('.recipient_pic').src=`${found.friendPic}`
 }
 
 const displayChatList_bootstrap=async()=>{

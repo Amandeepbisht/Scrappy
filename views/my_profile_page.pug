@@ -19,7 +19,7 @@ body
         .msgNotify= newMsgs
         a(href='/myProfile')
           p.topName= user.name.split(' ')[0]
-        image.top_pic(alt='my_profile' src=`/images/${user.profilePhoto}`)
+        image.top_pic(alt='my_profile' src=`${user.profilePhoto}`)
 
 
     .container-fluid.my_profile_body
@@ -50,7 +50,7 @@ body
           .row.justify-content-start.photo-row
             .col-lg-6.mx-auto
               .my_pic
-                img(alt='my_profile' src=`images/${user.profilePhoto}`)
+                img(alt='my_profile' src=`${user.profilePhoto}`)
           .row.justify-content-center
             .col-lg-6.my_description
               .row

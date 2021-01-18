@@ -14,7 +14,7 @@ body
       .col
         h.app_name Scrappy
         p.topName= user.name.split(' ')[0]
-        image.top_pic(alt='my_profile' src=`/images/${user.profilePhoto}`)
+        image.top_pic(alt='my_profile' src=`${user.profilePhoto}`)
   .container.messenger_container
     .row
       .col-lg-4.left_container

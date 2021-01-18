@@ -2,6 +2,8 @@ const AppError = require('../utils/appError')
 const User=require('./../models/userModel')
 const catchAsync=require('./catchAsync')
 const multer=require('multer');
+const aws=require('aws-sdk')
+
 const sharp=require('sharp')
 
 // const multerStorage=multer.diskStorage({
@@ -15,34 +17,37 @@ const sharp=require('sharp')
 //   }
 // })
 
-const multerStorage=multer.memoryStorage()
-const multerFilter=(req,file,cb)=>{
-  if(file.mimetype.startsWith('image')){
+// const multerStorage=multer.memoryStorage()
+// const multerFilter=(req,file,cb)=>{
+//   if(file.mimetype.startsWith('image')){
     
-    cb(null,true)
-  }
-  else{
-    cb(new AppError('Not an image file! please upload only images.',400),false)
-  }
-}
-const upload=multer({
-  storage:multerStorage,
-  fileFilter:multerFilter
-})
-exports.uploadUserPhoto=upload.single('photo')
-exports.resizeUserPhoto=(req,res,next)=>{
-  if(!req.file){return next()}
-  if(req.user){req.file.filename=`user-${req.user.id}-${Date.now()}.jpeg`}
-  else if(!req.user){req.file.filename=`user-${req.body.email}-${Date.now()}.jpeg`}
+//     cb(null,true)
+//   }
+//   else{
+//     cb(new AppError('Not an image file! please upload only images.',400),false)
+//   }
+// }
+// const upload=multer({
+//   storage:multerStorage,
+//   fileFilter:multerFilter
+// })
+// exports.uploadUserPhoto=upload.single('photo')
+// exports.resizeUserPhoto=(req,res,next)=>{
+//   if(!req.file){return next()}
+//   if(req.user){req.file.filename=`user-${req.user.id}-${Date.now()}.jpeg`}
+//   else if(!req.user){req.file.filename=`user-${req.body.email}-${Date.now()}.jpeg`}
   
-  sharp(req.file.buffer)
-    .resize(400,350)
-    .toFormat('jpeg')
-    .jpeg({quality:90})
-    .withMetadata()
-    .toFile(`dev-data/images/${req.file.filename}`)
-    next();
-}
+//   sharp(req.file.buffer)
+//     .resize(400,350)
+//     .toFormat('jpeg')
+//     .jpeg({quality:90})
+//     .withMetadata()
+//     .toFile(`dev-data/images/${req.file.filename}`)
+//     next();
+// }
+
+
+
 exports.getAllUsers=async(req,res)=>{
   try{
     const users=await User.find()
@@ -96,7 +101,7 @@ exports.updateMe=catchAsync(async(req,res,next)=>{
 
  
  if(req.file){
-   newObj.profilePhoto=req.file.filename
+   newObj.profilePhoto=req.file.transforms[0].location
  }
  
  let updatedUser=await User.findByIdAndUpdate(user._id,newObj,{runValidators:true})
@@ -198,4 +203,14 @@ exports.checkUpdate=catchAsync(async(req,res,next)=>{
     {$set:{"chatList.$.name":friend.name,"chatList.$.friendPic":friend.profilePhoto}}
   )
   next()
+})
+
+exports.updateMeS3=catchAsync(async(req,res,next)=>{
+  console.log(req.file)
+  console.log(req.file.transforms[0].location)
+  let user=await User.findById(req.user._id)
+  await User.findByIdAndUpdate(req.user._id,{profilePhoto:req.file.transforms[0].location})
+  res.status(200).json({
+    status:'success'
+  })
 })

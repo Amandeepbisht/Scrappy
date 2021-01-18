@@ -1,5 +1,6 @@
 const express=require('express');
 const userController=require('./../controller/userController')
+const photoController=require('./../controller/photoController')
 const authController=require('./../controller/authController')
 const router=express.Router()
 
@@ -13,8 +14,7 @@ router
 
 router
   .route('/signUp')
-  .post(userController.uploadUserPhoto,
-    userController.resizeUserPhoto,
+  .post(photoController.uploadS3,
     authController.signUp)
 
 router
@@ -49,8 +49,7 @@ router
 router  
   .route('/updateMe')
   .patch(authController.protect,
-    userController.uploadUserPhoto,
-    userController.resizeUserPhoto,
+    photoController.uploadS3,
     userController.updateMe)
 
 router  
@@ -64,6 +63,11 @@ router
   .route('/unblock_user')
   .patch(authController.protect,userController.unblock)
 
+router  
+  .route('/uploadS3')
+  .post(authController.protect,
+    photoController.uploadS3,
+    userController.updateMeS3)
 
   
 module.exports=router;

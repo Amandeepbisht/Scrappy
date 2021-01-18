@@ -15,7 +15,7 @@ head
       .msgNotify= newMsgs
       a(href='/myProfile').topName= user.name.split(' ')[0]
       //p.topName= user.name.split(' ')[0]
-      image.top_pic(alt='my_profile' src=`/images/${user.profilePhoto}`)
+      image.top_pic(alt='my_profile' src=`${user.profilePhoto}`)
 
 
 .container.all_users
@@ -26,7 +26,7 @@ head
     each user in users
       .col-lg-2.col-md-4.user_card
         .profile_pic
-          img(src=`images/${user.profilePhoto}`)
+          img(src=`${user.profilePhoto}`)
         .card_name
           p.user_name= user.name
           a(href=`/user/${user.id}`)

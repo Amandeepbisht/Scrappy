@@ -16,7 +16,7 @@ head
       .msgNotify= newMsgs
       a(href='/myProfile')
         p.topName= user.name.split(' ')[0]
-      image.top_pic(alt='my_profile' src=`/images/${user.profilePhoto}`)
+      image.top_pic(alt='my_profile' src=`${user.profilePhoto}`)
          
   .container
     .row.justify-content-center.update_me_container
