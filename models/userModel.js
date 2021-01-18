@@ -54,7 +54,7 @@ const userSchema= new mongoose.Schema({
   },
   profilePhoto:{
     type:String,
-    default:'no-user.jpg'
+    default:'https://scrappy-app2.s3.ca-central-1.amazonaws.com/60051d7e28bca63e7c655407-1610948957189.jpeg'
 
   },
   chatList:[

@@ -66,8 +66,7 @@ router
 router  
   .route('/uploadS3')
   .post(authController.protect,
-    photoController.uploadS3,
-    userController.updateMeS3)
+    photoController.uploadS3)
 
   
 module.exports=router;
