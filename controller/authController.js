@@ -38,6 +38,14 @@ exports.signUp=catchAsync(async(req,res,next)=>{
   
   let signUpObj=req.body
   if(req.file){signUpObj.profilePhoto=req.file.transforms[0].location}
+  let findUser=await User.findOne({email:req.body.email})
+  if(findUser!=null){
+    if(findUser.active==false){
+      return next(new AppError('A login link has already been sent to this email-id.',404))
+    }
+    return next(new AppError('User already exist with this email-id',404))
+  }
+  console.log(findUser)
   const user= await User.create(signUpObj)
   const url = `${req.protocol}://${req.get('host')}/myProfile`
   
